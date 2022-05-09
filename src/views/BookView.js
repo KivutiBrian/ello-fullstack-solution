@@ -59,10 +59,11 @@ const BookView = () => {
 
         const theWord = content.slice(tokenObject.position[0], tokenObject.position[1] + 1)
         const theWordValue = tokenObject.value
+        const name = []
 
         // return a span tag that is clickable
         return <span style={{ margin: 0, padding: 0 }} onClick={(e) => navigate(`/token/${theWordValue}`)}>{`${theWord} `} </span>
-
+        
       })
 
       return results
