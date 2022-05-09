@@ -3,11 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+
+// create client
+const client = new ApolloClient({
+  uri: process.env.REACT_APP_BASE_URL,
+  cache: new InMemoryCache()
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={ client }>
+      <App />
+    </ApolloProvider>
+
   </React.StrictMode>
 );
 
