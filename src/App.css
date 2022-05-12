@@ -28,19 +28,24 @@ body {
 }
 
 .card {
-    
+    background-color: #FFC971;
     box-sizing: content-box;
     min-height: 30rem ;
     max-height: 30rem;
     font-size: 1.5rem;
-    line-height: 1.6;
     font-family: cursive;
+    font-weight: 700;
+    line-height: 1.6;
     border: 2px solid black;
     padding: 4rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     width: 25rem;
     max-width: 25rem;
+}
+
+.card span{
+    cursor: pointer;
 }
 
 .page-link{

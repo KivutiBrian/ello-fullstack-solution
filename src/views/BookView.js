@@ -50,23 +50,55 @@ const BookView = () => {
   const prepareTokenLink = (content, tokens) => {
 
     if (content.length > 0 && tokens.length > 0) {
+
+
+
       let results = tokens.map(tokenObject => {
         /*
-          get the actual word. 
-          Add 1 to the second index of the positon array - with this sort's the issue of also picking the punctuation marks
-          **TODO - Look for cleaner alternative to fix this as it's not a long term solution
-        */
+          **TODO - Look for cleaner alternative to include punctions
 
-        const theWord = content.slice(tokenObject.position[0], tokenObject.position[1] + 1)
+        */
+        let first_index;
+        let last_index;
+
+        if (tokenObject.position[0] === 0) {
+          first_index = tokenObject.position[0]
+        } else {
+          first_index = tokenObject.position[0] - 1
+        }
+
+    
+        // last index || add 1 to the last index so that you can capture the closing punctuations
+        last_index = tokenObject.position[1] + 1
+
+        let theWord = content.slice(first_index, last_index)
+
+        if (content.slice(first_index, last_index + 1).endsWith(".")) {
+          theWord = content.slice(first_index, last_index + 1)
+          console.log("ends with .")
+          console.log(content.slice(first_index, last_index + 1))
+        } else if (content.slice(first_index, last_index + 1).endsWith(",")) {
+          console.log("ends with ,")
+        } else if (content.slice(first_index,last_index+1).endsWith("!")) {
+          console.log("ends with !")
+        } else if (content.slice(first_index,last_index+1).endsWith("?")) {
+          console.log("ends with ?")
+        } else if (content.slice(first_index,last_index+1).endsWith('"')) {
+          console.log('ends with " ')
+        }
+
+        // define some punctuations
+        // let punctions = [".", ",", ":", "!", "?", '”']
+
         const theWordValue = tokenObject.value
-        const name = []
 
         // return a span tag that is clickable
         return <span style={{ margin: 0, padding: 0 }} onClick={(e) => navigate(`/token/${theWordValue}`)}>{`${theWord} `} </span>
-        
+
       })
 
       return results
+
     }
     return <span></span>
   }
@@ -83,8 +115,6 @@ const BookView = () => {
       </>
     )
   })
-
-
 
   // change book page
   const paginate = (pageNumber) => setCurrentPage(pageNumber)

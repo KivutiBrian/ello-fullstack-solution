@@ -6,7 +6,7 @@ const Book = ({ pages, title }) => {
 
         <>
             <div>
-                <h3 className="header">{title}</h3>
+                <h2 className="header">{title}</h2>
             </div>
 
             <div className="cards">
