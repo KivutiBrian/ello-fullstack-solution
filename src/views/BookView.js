@@ -56,6 +56,8 @@ const BookView = () => {
       let results = tokens.map(tokenObject => {
         /*
           **TODO - Look for cleaner alternative to include punctions
+          Looosing closing speech marks.
+          Issue with the hypens
 
         */
         let first_index;
@@ -66,29 +68,12 @@ const BookView = () => {
         } else {
           first_index = tokenObject.position[0] - 1
         }
-
     
         // last index || add 1 to the last index so that you can capture the closing punctuations
         last_index = tokenObject.position[1] + 1
 
         let theWord = content.slice(first_index, last_index)
 
-        if (content.slice(first_index, last_index + 1).endsWith(".")) {
-          theWord = content.slice(first_index, last_index + 1)
-          console.log("ends with .")
-          console.log(content.slice(first_index, last_index + 1))
-        } else if (content.slice(first_index, last_index + 1).endsWith(",")) {
-          console.log("ends with ,")
-        } else if (content.slice(first_index,last_index+1).endsWith("!")) {
-          console.log("ends with !")
-        } else if (content.slice(first_index,last_index+1).endsWith("?")) {
-          console.log("ends with ?")
-        } else if (content.slice(first_index,last_index+1).endsWith('"')) {
-          console.log('ends with " ')
-        }
-
-        // define some punctuations
-        // let punctions = [".", ",", ":", "!", "?", '”']
 
         const theWordValue = tokenObject.value
 
