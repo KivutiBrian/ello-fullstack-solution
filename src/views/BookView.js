@@ -54,12 +54,7 @@ const BookView = () => {
 
 
       let results = tokens.map(tokenObject => {
-        /*
-          **TODO - Look for cleaner alternative to include punctions
-          Looosing closing speech marks.
-          Issue with the hypens
-
-        */
+        
         let first_index;
         let last_index;
 
@@ -74,16 +69,29 @@ const BookView = () => {
 
         let theWord = content.slice(first_index, last_index)
 
-        console.log("here", content.slice(first_index, last_index).endsWith("-"))
-
-        // handle the words with hypens
+        /* handle the words with hypens */
+        
         if(content.slice(first_index, last_index).endsWith("-")){
           theWord = theWord.trim().replace("-", "").trim()
         }
 
         
+        let newTheWord = content.slice(first_index, last_index+1)
 
+        // console.log(newTheWord.charAt(newTheWord.length - 1))
+        let a = newTheWord.charAt(newTheWord.length - 1)
+        
 
+        if (a.match(/^[0-9A-Za-z]+$/) === null) { 
+          //is not alphanumeric
+          
+          theWord = content.slice(first_index, last_index+1)
+          }else{
+          //it is alphanumeric
+            console.log("it is alphanumeric")
+          }
+
+        
         const theWordValue = tokenObject.value
 
         // return a span tag that is clickable
