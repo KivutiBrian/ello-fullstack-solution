@@ -74,11 +74,20 @@ const BookView = () => {
 
         let theWord = content.slice(first_index, last_index)
 
+        console.log("here", content.slice(first_index, last_index).endsWith("-"))
+
+        // handle the words with hypens
+        if(content.slice(first_index, last_index).endsWith("-")){
+          theWord = theWord.trim().replace("-", "").trim()
+        }
+
+        
+
 
         const theWordValue = tokenObject.value
 
         // return a span tag that is clickable
-        return <span style={{ margin: 0, padding: 0 }} onClick={(e) => navigate(`/token/${theWordValue}`)}>{`${theWord} `} </span>
+        return <span style={{ margin: 0, padding: 0 }} onClick={(e) => navigate(`/token/${theWordValue}`)}>{`${theWord}`}</span>
 
       })
 
