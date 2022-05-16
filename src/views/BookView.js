@@ -57,6 +57,10 @@ const BookView = () => {
         let first_index;
         let last_index;
 
+
+        /*
+        Sort the issue of handling opening speech marks
+        */
         if (tokenObject.position[0] === 0) {
           first_index = tokenObject.position[0]
         } else {
