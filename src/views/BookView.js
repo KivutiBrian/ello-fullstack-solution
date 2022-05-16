@@ -46,15 +46,14 @@ const BookView = () => {
   if (error) return <div>Something went wrong...</div>
 
 
-  // create a helper function that enables each word in the content to be clickable
+  // create a helper function that enables each word in the content to be clickable and perform the mapping
   const prepareTokenLink = (content, tokens) => {
 
     if (content.length > 0 && tokens.length > 0) {
 
 
-
       let results = tokens.map(tokenObject => {
-        
+
         let first_index;
         let last_index;
 
@@ -63,35 +62,35 @@ const BookView = () => {
         } else {
           first_index = tokenObject.position[0] - 1
         }
-    
+
         // last index || add 1 to the last index so that you can capture the closing punctuations
         last_index = tokenObject.position[1] + 1
 
         let theWord = content.slice(first_index, last_index)
 
-        /* handle the words with hypens */
-        
-        if(content.slice(first_index, last_index).endsWith("-")){
+        /* handle the words with hypens
+          Trim that word and replace the - with a empty space.
+        */
+
+        if (content.slice(first_index, last_index).endsWith("-")) {
           theWord = theWord.trim().replace("-", "").trim()
         }
 
-        
-        let newTheWord = content.slice(first_index, last_index+1)
-
-        // console.log(newTheWord.charAt(newTheWord.length - 1))
+        /*
+         +1 to the last index and then check if the word ends with a closing speech marks
+        */
+        let newTheWord = content.slice(first_index, last_index + 1)
         let a = newTheWord.charAt(newTheWord.length - 1)
-        
 
-        if (a.match(/^[0-9A-Za-z]+$/) === null) { 
+
+        if (a.match(/^[0-9A-Za-z]+$/) === null) {
           //is not alphanumeric
-          
-          theWord = content.slice(first_index, last_index+1)
-          }else{
+          theWord = content.slice(first_index, last_index + 1)
+        } else {
           //it is alphanumeric
-            console.log("it is alphanumeric")
-          }
+          console.log("it is alphanumeric")
+        }
 
-        
         const theWordValue = tokenObject.value
 
         // return a span tag that is clickable
