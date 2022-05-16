@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useQuery, gql } from '@apollo/client';
 
@@ -34,7 +34,7 @@ const BookView = () => {
 
   // setup state
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage, setItemsPerPage] = useState(2)
+  const [itemsPerPage] = useState(2)
 
   // destructure objects from query
   const { error, data, loading } = useQuery(GET_BOOK);
